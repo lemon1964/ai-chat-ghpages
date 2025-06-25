@@ -27,7 +27,7 @@ jobs:
 
       - name: 🏠 Build project
         run: |
-          echo "NEXT_PUBLIC_BASE_PATH=/ai-chat/" > .env.production
+          echo "NEXT_PUBLIC_BASE_PATH=/ai-chat-ghpages/" > .env.production
           npm run build
 
       - name: 🔄 Deploy to GitHub Pages

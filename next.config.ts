@@ -4,16 +4,14 @@ import type { NextConfig } from "next";
 const isProd = process.env.NODE_ENV === 'production';
 
 const nextConfig: NextConfig = {
-  // output: 'export',
+  output: 'export',
   images: {
+    unoptimized: true,
     domains: ['localhost'],
   },
   reactStrictMode: false,
-  basePath: isProd ? '/ai-chat' : '',
-  assetPrefix: isProd ? '/ai-chat/' : '',
-  // env: {
-  //   NEXTAUTH_URL: process.env.NEXTAUTH_URL,
-  // },
+  basePath: isProd ? '/ai-chat-ghpages' : '',
+  assetPrefix: isProd ? '/ai-chat-ghpages/' : '',
 };
 
 export default nextConfig;
