@@ -1,0 +1,22 @@
+/* frontend/src/app/globals.css */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Только темы и body */
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+body {
+  @apply bg-[var(--background)] text-[var(--foreground)] m-0 p-0 overflow-x-hidden;
+  font-family: Arial, Helvetica, sans-serif;
+}
