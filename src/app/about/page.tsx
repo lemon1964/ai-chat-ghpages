@@ -11,7 +11,7 @@ import { localizationService } from "@/services/localizationService";
 export default function UserProfilePage() {
 
   useEffect(() => {
-    audioService.playMusic("/music/greensleeves.mp3");
+    audioService.playMusic(`${process.env.NEXT_PUBLIC_BASE_PATH}music/greensleeves.mp3`);
     return () => {
       audioService.stopMusic();
     };

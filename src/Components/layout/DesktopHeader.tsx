@@ -9,6 +9,7 @@ import { MODEL_OPTIONS } from "@/lib/ModelOptions";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "@/store/store";
 import Link from "next/link";
+import { getAssetPath } from "@/utils/getAssetPath";
 
 export interface DesktopHeaderProps {
   onLanguageChange: (lang: "ru" | "en") => void;
@@ -27,9 +28,13 @@ export const DesktopHeader: FC<DesktopHeaderProps> = ({
 }) => {
   const dispatch = useDispatch<AppDispatch>();
 
+
+
   // Фоновая музыка
   useEffect(() => {
-    audioService.playMusic("/music/greensleeves.mp3");
+    audioService.playMusic(getAssetPath('music/greensleeves.mp3'));
+    // audioService.playMusic(`${process.env.NEXT_PUBLIC_BASE_PATH}music/greensleeves.mp3`);
+    // audioService.playMusic("/music/greensleeves.mp3");
     return () => void audioService.stopMusic();
   }, []);
 
