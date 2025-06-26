@@ -30,7 +30,7 @@ export default function UserProfilePage() {
       <div
         className="absolute inset-0 bg-cover bg-center"
         style={{
-          backgroundImage: `url("/images/main.png")`,
+          backgroundImage: `url("${getAssetPath('images/main.png')}")`,
           opacity: 0.05, // регулируйте прозрачность
         }}
       />
@@ -46,22 +46,9 @@ export default function UserProfilePage() {
             {localizationService.get("ToHome")}
           </Link>
         </div>
-
         <h1 className="mt-6 text-4xl font-extrabold text-white drop-shadow-lg">
           {localizationService.get("YourProfile")}
         </h1>
-
-        <div className="mt-4 bg-gray-900 bg-opacity-50 p-6 rounded-2xl shadow-xl max-w-md">
-          <p className="space-y-2">
-            <span className="inline-block mr-2">📧</span>
-            {/* <strong className="text-gray-100">Email:</strong> <span>{userData.email}</span> */}
-          </p>
-
-          <p className="mt-4">
-            <span className="inline-block mr-2">🧑</span>
-            <strong className="text-gray-100">{localizationService.get("Name")}</strong>{" "}
-          </p>
-        </div>
       </div>
     </div>
   );
