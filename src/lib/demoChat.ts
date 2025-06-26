@@ -1,3 +1,4 @@
+// ai-chat-ghpages/src/lib/demoChat.ts
 export const demoCategories = [
   { id: "skills", name: "Скиллы будущего" }, // Более разговорный вариант
   { id: "projects", name: "Проекты-хайперы" },   // Добавляем интриги
