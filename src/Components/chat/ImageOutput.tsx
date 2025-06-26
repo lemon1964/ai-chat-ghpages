@@ -1,4 +1,4 @@
-// frontend/src/Components/chat/ImageOutput.tsx
+// ai-chat-ghpages/src/Components/chat/ImageOutput.tsx
 "use client";
 import Image from "next/image";
 import { formatFileUrl } from "@/utils/formatFileUrl";
