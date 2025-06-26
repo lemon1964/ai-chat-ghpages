@@ -7,11 +7,13 @@ import "@/styles/starry_sky_styles.css";
 import { audioService } from "@/services/audioService";
 import Notification from "@/Components/common/Notification";
 import { localizationService } from "@/services/localizationService";
+import { getAssetPath } from "@/utils/getAssetPath";
+
 
 export default function UserProfilePage() {
 
   useEffect(() => {
-    audioService.playMusic(`${process.env.NEXT_PUBLIC_BASE_PATH}music/greensleeves.mp3`);
+    audioService.playMusic(getAssetPath('music/greensleeves.mp3'));
     return () => {
       audioService.stopMusic();
     };
