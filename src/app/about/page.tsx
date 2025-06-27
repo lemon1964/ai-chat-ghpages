@@ -1,7 +1,6 @@
-// ai-chat-ghpages/src/app/about/page.tsx
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import "@/styles/starry_sky_styles.css";
 import { audioService } from "@/services/audioService";
@@ -10,7 +9,13 @@ import { localizationService } from "@/services/localizationService";
 import { getAssetPath } from "@/utils/getAssetPath";
 
 export default function UserProfilePage() {
+  const [isDesktop, setIsDesktop] = useState(true); // по умолчанию true, чтобы SSR не глючил
+
   useEffect(() => {
+    // Оценка ширины экрана после монтирования
+    setIsDesktop(window.innerWidth >= 768);
+
+    // Музыка
     audioService.playMusic(getAssetPath("music/greensleeves.mp3"));
     return () => {
       audioService.stopMusic();
@@ -19,20 +24,31 @@ export default function UserProfilePage() {
 
   return (
     <div className="relative min-h-screen overflow-hidden">
-      {/* 1) Слой звёзд — CSS-анимация из starry_sky_styles.css */}
-      <div id="stars" className="absolute inset-0"></div>
-      <div id="stars2" className="absolute inset-0"></div>
-      <div id="stars3" className="absolute inset-0"></div>
+      {/* 1) Слой фона: либо звёзды, либо градиент */}
+      {isDesktop ? (
+        <>
+          <div id="stars" className="absolute inset-0" />
+          <div id="stars2" className="absolute inset-0" />
+          <div id="stars3" className="absolute inset-0" />
+          <div
+            className="absolute inset-0 bg-cover bg-center"
+            style={{
+              backgroundImage: `url("${getAssetPath("images/main.png")}")`,
+              opacity: 0.05,
+            }}
+          />
+        </>
+      ) : (
+        <div
+          className="absolute inset-0"
+          style={{
+            backgroundImage: "linear-gradient(to bottom, #1e293b, #0f172a)",
+            opacity: 0.8,
+          }}
+        />
+      )}
 
-      {/* 2) Слой с полупрозрачным main.png */}
-      <div
-        className="absolute inset-0 bg-cover bg-center"
-        style={{
-          backgroundImage: `url("${getAssetPath("images/main.png")}")`,
-          opacity: 0.05, // регулируйте прозрачность
-        }}
-      />
-      {/* 3) Контент страницы поверх обоих слоёв */}
+      {/* 2) Контент */}
       <div className="relative z-10 px-4 py-6 text-gray-200">
         <Notification />
 
@@ -47,19 +63,16 @@ export default function UserProfilePage() {
         <h1 className="mt-6 text-4xl font-extrabold text-white drop-shadow-lg">
           {localizationService.get("YourProfile")}
         </h1>
+
         <div className="p-6 rounded-2xl max-w-2xl mx-auto mt-10 space-y-6 text-lg leading-relaxed text-gray-100">
           <p>
             👋 Привет! Ты только что увидел, как можно пообщаться с <strong>AI</strong>, через страницу
-            на <strong>Next.js</strong> и <strong>Tailwind</strong>.
-            Всего за пару кликов, без серверов и регистрации.
+            на <strong>Next.js</strong> и <strong>Tailwind</strong>. Всего за пару кликов, без серверов и регистрации.
           </p>
-
           <p>
             Этот чат — часть учебного проекта, созданного для курса по{" "}
-            <strong>Fullstack-разработке с ИИ</strong>. Он показывает, как можно соединить
-            нейросети, современный фронт и креатив — даже без большого опыта в программировании.
+            <strong>Fullstack-разработке с ИИ</strong>. Он показывает, как можно соединить нейросети, современный фронт и креатив — даже без большого опыта в программировании.
           </p>
-
           <p>
             💡 Хочешь создать такой же проект? Или свой? Тогда тебе сюда: на{" "}
             <strong>Stepik-курс «AI Chat: от идеи до запуска»</strong>. В курсе:

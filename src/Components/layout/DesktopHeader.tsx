@@ -1,4 +1,4 @@
-// frontend/src/Components/layout/DesktopHeader.tsx
+// ai-chat-ghpages/src/Components/layout/DesktopHeader.tsx
 "use client";
 
 import { FC, useEffect } from "react";

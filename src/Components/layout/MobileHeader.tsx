@@ -1,4 +1,4 @@
-// frontend/src/Components/layout/MobileHeader.tsx
+// ai-chat-ghpages/src/Components/layout/MobileHeader.tsx
 "use client";
 
 import { FC } from "react";
