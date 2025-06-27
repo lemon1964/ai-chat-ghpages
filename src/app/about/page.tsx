@@ -1,3 +1,4 @@
+// ai-chat-ghpages/src/app/about/page.tsx
 "use client";
 
 import { useEffect, useState } from "react";
@@ -21,6 +22,11 @@ export default function UserProfilePage() {
       audioService.stopMusic();
     };
   }, []);
+
+  const handleGoToRender = () => {
+    audioService.stopMusic();
+    window.open("https://ai-chat-frontend-wy6h.onrender.com/", "_blank");
+  };
 
   return (
     <div className="relative min-h-screen overflow-hidden">
@@ -60,18 +66,20 @@ export default function UserProfilePage() {
             {localizationService.get("ToHome")}
           </Link>
         </div>
-        <h1 className="mt-6 text-4xl font-extrabold text-white drop-shadow-lg">
+        {/* <h1 className="mt-6 text-4xl font-extrabold text-white drop-shadow-lg">
           {localizationService.get("YourProfile")}
-        </h1>
+        </h1> */}
 
         <div className="p-6 rounded-2xl max-w-2xl mx-auto mt-10 space-y-6 text-lg leading-relaxed text-gray-100">
           <p>
-            👋 Привет! Ты только что увидел, как можно пообщаться с <strong>AI</strong>, через страницу
-            на <strong>Next.js</strong> и <strong>Tailwind</strong>. Всего за пару кликов, без серверов и регистрации.
+            👋 Привет! Ты только что увидел, как можно пообщаться с <strong>AI</strong>, через
+            страницу на <strong>Next.js</strong> и <strong>Tailwind</strong>. Всего за пару кликов,
+            без серверов и регистрации.
           </p>
           <p>
             Этот чат — часть учебного проекта, созданного для курса по{" "}
-            <strong>Fullstack-разработке с ИИ</strong>. Он показывает, как можно соединить нейросети, современный фронт и креатив — даже без большого опыта в программировании.
+            <strong>Fullstack-разработке с ИИ</strong>. Он показывает, как можно соединить
+            нейросети, современный фронт и креатив — даже без большого опыта в программировании.
           </p>
           <p>
             💡 Хочешь создать такой же проект? Или свой? Тогда тебе сюда: на{" "}
@@ -86,8 +94,17 @@ export default function UserProfilePage() {
           </ul>
 
           <p>Даже если ты новичок — справишься. Главное — желание создать что-то классное.</p>
-
+          
           <div className="text-center mt-8">
+            <button
+              onClick={handleGoToRender}
+              className="inline-block bg-indigo-600 text-white px-6 py-3 rounded-xl shadow-lg hover:bg-indigo-700 transition"
+            >
+              Перейти в полную версию чата на Render →
+            </button>
+          </div>
+
+          {/* <div className="text-center mt-8">
             <a
               href="https://ai-chat-frontend-wy6h.onrender.com/"
               target="_blank"
@@ -96,7 +113,7 @@ export default function UserProfilePage() {
             >
               Перейти в полную версию чата на Render →
             </a>
-          </div>
+          </div> */}
         </div>
       </div>
     </div>

@@ -1,4 +1,4 @@
-// frontend/src/Components/layout/Layout.tsx
+// ai-chat-ghpages/src/Components/layout/Layout.tsx
 import { FC, ReactNode, useState } from "react";
 import { MobileHeader } from "./MobileHeader";
 import { DesktopHeader } from "./DesktopHeader";

@@ -1,7 +1,7 @@
 // ai-chat-ghpages/src/app/page.tsx
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "@/store/store";
 import Notification from "@/Components/common/Notification";
@@ -22,6 +22,13 @@ export default function ChatPage() {
   );
 
   useSelector((state: RootState) => state.language.current); // подписка на изменение языка
+
+  useEffect(() => {
+    // Пингуем Render фронт и бэк
+    fetch("https://ai-chat-frontend-wy6h.onrender.com/", { mode: "no-cors" }).catch(() => {});
+    fetch("https://ai-chat-backend-3cba.onrender.com/healthz/", { mode: "no-cors" }).catch(() => {});
+  }, []);
+  
 
   return (
     <div className="flex flex-col h-screen">
