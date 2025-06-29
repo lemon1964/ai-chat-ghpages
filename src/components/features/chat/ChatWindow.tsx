@@ -2,11 +2,11 @@
 "use client";
 
 import { FC, useState, useEffect, useRef } from "react";
-import { ImageOutput } from "./ImageOutput";
+import { ImageOutput } from "../../ui/chat/ImageOutput";
 import { localizationService } from "@/services/localizationService";
-import SoundVolume from "@/Components/common/SoundVolume";
-import ModalAudio from "@/Components/common/ModalAudio";
-import { demoMessages } from "@/lib/demoChat";
+import SoundVolume from "@/components/features/common/SoundVolume";
+import ModalAudio from "@/components/ui/common/ModalAudio";
+import { demoMessages } from "@/data/demoChat";
 import dynamic from "next/dynamic";
 
 // Импорт без SSR

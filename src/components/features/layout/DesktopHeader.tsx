@@ -5,7 +5,7 @@ import { FC, useEffect } from "react";
 import { localizationService } from "@/services/localizationService";
 import { audioService } from "@/services/audioService";
 import { modelActions } from "@/reducers/modelReducer";
-import { MODEL_OPTIONS } from "@/lib/ModelOptions";
+import { MODEL_OPTIONS } from "@/data/ModelOptions";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "@/store/store";
 import Link from "next/link";
@@ -90,8 +90,8 @@ export const DesktopHeader: FC<DesktopHeaderProps> = ({
       </div>
       <div className="flex items-center gap-4">
         <p className="text-gray-200">
-          <Link href="/about" className="underline hover:text-blue-400">
-            {localizationService.get("Info")}
+          <Link href="/course" className="underline hover:text-blue-400">
+            {localizationService.get("Course")}
           </Link>
         </p>
       </div>

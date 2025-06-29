@@ -5,11 +5,11 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import "@/styles/starry_sky_styles.css";
 import { audioService } from "@/services/audioService";
-import Notification from "@/Components/common/Notification";
+import Notification from "@features/common/Notification";
 import { localizationService } from "@/services/localizationService";
 import { getAssetPath } from "@/utils/getAssetPath";
 
-export default function UserProfilePage() {
+export default function CourseInfo() {
   const [isDesktop, setIsDesktop] = useState(true); // по умолчанию true, чтобы SSR не глючил
 
   useEffect(() => {
@@ -66,10 +66,6 @@ export default function UserProfilePage() {
             {localizationService.get("ToHome")}
           </Link>
         </div>
-        {/* <h1 className="mt-6 text-4xl font-extrabold text-white drop-shadow-lg">
-          {localizationService.get("YourProfile")}
-        </h1> */}
-
         <div className="p-6 rounded-2xl max-w-2xl mx-auto mt-10 space-y-6 text-lg leading-relaxed text-gray-100">
           <p>
             👋 Привет! Ты только что увидел, как можно пообщаться с <strong>AI</strong>, через
@@ -103,17 +99,6 @@ export default function UserProfilePage() {
               Перейти в полную версию чата на Render →
             </button>
           </div>
-
-          {/* <div className="text-center mt-8">
-            <a
-              href="https://ai-chat-frontend-wy6h.onrender.com/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-block bg-indigo-600 text-white px-6 py-3 rounded-xl shadow-lg hover:bg-indigo-700 transition"
-            >
-              Перейти в полную версию чата на Render →
-            </a>
-          </div> */}
         </div>
       </div>
     </div>

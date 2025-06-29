@@ -3,14 +3,12 @@ import { configureStore } from "@reduxjs/toolkit";
 import notificationReducer from "../reducers/notificationReducer";
 import modelReducer from "../reducers/modelReducer";
 import languageReducer from "@/reducers/languageReducer";
-// import { chatApi } from "../services/chatApi";
 
 const store = configureStore({
   reducer: {
     notification: notificationReducer,
     model: modelReducer,
     language: languageReducer,
-    // [chatApi.reducerPath]: chatApi.reducer,
   },
   middleware: (getDefaultMiddleware) => getDefaultMiddleware(),
 });

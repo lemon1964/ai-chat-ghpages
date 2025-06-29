@@ -25,8 +25,14 @@
     "baseUrl": ".",
     "paths": {
       "@/*": ["./src/*"],
-      "@types/*": ["./src/@types/*"],
-      "@Components/*": ["./src/Components/*"]
+      "@features/*": ["./src/components/features/*"],
+      "@ui/*": ["./src/components/ui/*"],
+      "@lib/*": ["./src/lib/*"],
+      "@data/*": ["./src/data/*"],
+      "@services/*": ["./src/services/*"],
+      "@reducers/*": ["./src/reducers/*"],
+      "@store/*": ["./src/store/*"],
+      "@styles/*": ["./src/styles/*"]
     },    
     "typeRoots": ["./node_modules/@types", "./src/@types"]
   },

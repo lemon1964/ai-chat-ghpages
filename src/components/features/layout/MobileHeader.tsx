@@ -3,7 +3,7 @@
 
 import { FC } from "react";
 import { localizationService } from "@/services/localizationService";
-import { MODEL_OPTIONS } from "@/lib/ModelOptions";
+import { MODEL_OPTIONS } from "@/data/ModelOptions";
 import Link from "next/link";
 
 export interface MobileHeaderProps {
@@ -75,7 +75,7 @@ export const MobileHeader: FC<MobileHeaderProps> = ({
       </div>
       <div className="flex items-center gap-4">
         <p className="text-gray-200">
-          <Link href="/about" className="underline hover:text-blue-400">
+          <Link href="/course" className="underline hover:text-blue-400">
             📜
           </Link>
         </p>

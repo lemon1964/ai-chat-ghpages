@@ -2,7 +2,7 @@
 import { FC, ReactNode, useState } from "react";
 import { MobileHeader } from "./MobileHeader";
 import { DesktopHeader } from "./DesktopHeader";
-import { CategoryList } from "@/Components/chat/CategoryList";
+import { CategoryList } from "@/components/features/chat/CategoryList";
 
 export type LayoutProps = {
   children: ReactNode;
@@ -42,7 +42,6 @@ export const Layout: FC<LayoutProps> = ({
       />
 
       <DesktopHeader
-        // isLoggedIn={isLoggedIn}
         onLanguageChange={onLanguageChange}
         modelType={modelType}
         selectedModel={selectedModel}
