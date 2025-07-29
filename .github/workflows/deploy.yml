@@ -19,16 +19,19 @@ jobs:
       - name: ♻ Install Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 18
+          node-version: 20
           cache: 'npm'
 
       - name: 📋 Install dependencies
         run: npm ci
 
       - name: 🏠 Build project
-        run: |
-          echo "NEXT_PUBLIC_BASE_PATH=/ai-chat-ghpages/" > .env.production
-          npm run build
+        env:
+          NEXT_PUBLIC_BASE_PATH: /ai-chat-ghpages/
+        run: npm run build
+        # run: |
+        #   echo "NEXT_PUBLIC_BASE_PATH=/ai-chat-ghpages/" > .env.production
+        #   npm run build
 
       - name: 🔄 Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
