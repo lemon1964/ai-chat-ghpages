@@ -20,11 +20,6 @@ export const CategoryList: FC<CategoryListProps> = ({ onSelect }) => {
             {cat.name}
           </button>
         ))}
-        <div className="mt-4 border border-green-500 text-green-500 italic rounded px-3 py-2 text-sm">
-          🧭 Пробежались по темам? Нажмите 📜 {" "}
-          <span className=" text-blue-500 font-semibold">«Курс»</span> вверху — там всё о курсе: что
-          вы получите, как всё устроено, и как создать свой AI-чат.
-        </div>
       </div>
     </>
   );

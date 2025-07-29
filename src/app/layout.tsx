@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
-import ClientReduxProvider from "../components/features/providers/ClientReduxProvider";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -26,11 +25,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable}`}>
-        <ClientReduxProvider>
-            {children}
-        </ClientReduxProvider>
-      </body>
+      <body className={`${geistSans.variable} ${geistMono.variable}`}>{children}</body>
     </html>
   );
 }

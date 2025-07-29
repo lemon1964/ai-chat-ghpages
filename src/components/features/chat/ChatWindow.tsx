@@ -1,15 +1,13 @@
-// frontend/src/Components/chat/ChatWindow.tsx
+// ai-chat-ghpages/src/components/features/chat/ChatWindow.tsx
 "use client";
 
 import { FC, useState, useEffect, useRef } from "react";
 import { ImageOutput } from "../../ui/chat/ImageOutput";
-import { localizationService } from "@/services/localizationService";
 import SoundVolume from "@/components/features/common/SoundVolume";
 import ModalAudio from "@/components/ui/common/ModalAudio";
 import { demoMessages } from "@/data/demoChat";
 import dynamic from "next/dynamic";
 
-// Импорт без SSR
 const MarkdownRenderer = dynamic(
   () => import("../common/MarkdownRenderer").then(mod => mod.MarkdownRenderer),
   { ssr: false }
@@ -19,27 +17,12 @@ export const ChatWindow: FC<ChatWindowProps> = ({ categoryId, categoryName }) =>
   const messages = demoMessages[categoryId] || [];
   const [audioModalOpen, setAudioModalOpen] = useState(false);
 
-  // PAGE_SIZE и infinite scroll
-  const PAGE_SIZE = 20;
-  const [limit, setLimit] = useState(PAGE_SIZE);
-
-  useEffect(() => {
-    setLimit(PAGE_SIZE);
-  }, [categoryId]);
-
   const topRef = useRef<HTMLDivElement | null>(null);
   const bottomRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     topRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [categoryId]);
-
-  const handleScroll = (e: React.UIEvent<HTMLDivElement>) => {
-    const container = e.currentTarget;
-    if (container.scrollTop < 50 && messages && limit < messages.length) {
-      setLimit(prev => Math.min(prev + PAGE_SIZE, messages.length));
-    }
-  };
 
   const scrollToTop = () => topRef.current?.scrollIntoView({ behavior: "smooth" });
   const scrollToBottom = () => bottomRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -53,13 +36,13 @@ export const ChatWindow: FC<ChatWindowProps> = ({ categoryId, categoryName }) =>
           className="px-3 py-1  bg-gray-500 text-white rounded hover:bg-blue-600"
           onClick={() => setAudioModalOpen(true)}
         >
-          🔊 {localizationService.get("AudioSettings")}
+          🔊 Аудио
         </button>
       </div>
       {/* Audio Settings Modal */}
       {audioModalOpen && (
         <ModalAudio
-          title={localizationService.get("AudioSettings")}
+          title={"Аудио"}
           onClose={() => setAudioModalOpen(false)}
         >
           <SoundVolume />
@@ -74,7 +57,7 @@ export const ChatWindow: FC<ChatWindowProps> = ({ categoryId, categoryName }) =>
           ▼
         </button>
 
-        <div className="flex flex-col h-full overflow-y-auto p-4 space-y-4" onScroll={handleScroll}>
+        <div className="flex flex-col h-full overflow-y-auto p-4 space-y-4">
           <div ref={topRef} />
           {messages.map((msg: Message) => (
             <div key={msg.id} className="space-y-1">

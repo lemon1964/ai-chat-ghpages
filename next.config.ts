@@ -7,7 +7,7 @@ const nextConfig: NextConfig = {
   output: 'export',
   images: {
     unoptimized: true,
-    domains: ['localhost'],
+    remotePatterns: [{ hostname: 'localhost' }]
   },
   reactStrictMode: false,
   basePath: isProd ? '/ai-chat-ghpages' : '',

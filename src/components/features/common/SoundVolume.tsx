@@ -1,7 +1,6 @@
-// frontend/src/Components/common/SoundVolume.tsx
+// ai-chat-ghpages/src/components/features/common/SoundVolume.tsx
 "use client";
 import { FC, useState, useEffect } from "react";
-import { localizationService } from "@/services/localizationService";
 import { audioService } from "@/services/audioService";
 
 const SoundVolume: FC = () => {
@@ -15,7 +14,7 @@ const SoundVolume: FC = () => {
     <div className="space-y-6 p-4">
       <div>
         <label className="block text-sm font-medium mb-1">
-          {localizationService.get("MusicVolume")}
+          {"Громкость музыки"}
         </label>
         <input
           type="range"

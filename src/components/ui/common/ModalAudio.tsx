@@ -1,7 +1,6 @@
-// frontend/src/Components/common/ModalAudio.tsx
+// ai-chat-ghpages/src/components/ui/common/ModalAudio.tsx
 "use client";
 import { FC, ReactNode } from "react";
-import { localizationService } from "@/services/localizationService";
 
 interface ModalProps {
   onClose: () => void;
@@ -23,7 +22,7 @@ const ModalAudio: FC<ModalProps> = ({ onClose, title, children }) => (
           className="px-4 py-2 bg-gray-500 text-white rounded hover:bg-gray-600"
           onClick={onClose}
         >
-          {localizationService.get("Close")}
+          {"Закрыть"}
         </button>
       </div>
     </div>
