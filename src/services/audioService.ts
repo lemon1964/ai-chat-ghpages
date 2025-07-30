@@ -1,5 +1,6 @@
 // ai-chat-ghpages/src/services/audioService.ts
 import { Howl } from "howler";
+import { formatFileUrl } from "@/utils/formatFileUrl"; // 👈 не забудь импорт
 
 class AudioService {
   private musicVolume: number;
@@ -21,9 +22,23 @@ class AudioService {
     if (this.music) {
       this.music.stop();
     }
-    this.music = new Howl({ src: [path], loop: true, volume: this.musicVolume });
+  
+    const fullPath = formatFileUrl(path); // 👈 исправление
+    this.music = new Howl({
+      src: [fullPath],
+      loop: true,
+      volume: this.musicVolume,
+    });
+  
     this.music.play();
   }
+  // playMusic(path: string): void {
+  //   if (this.music) {
+  //     this.music.stop();
+  //   }
+  //   this.music = new Howl({ src: [path], loop: true, volume: this.musicVolume });
+  //   this.music.play();
+  // }
 
   stopMusic(): void {
     if (this.music) {
