@@ -1,14 +1,26 @@
 // ai-chat-ghpages/src/components/features/common/ClientChatPage.tsx
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Layout } from "@/components/features/layout/Layout";
 import { ChatWindow } from "@/components/features/chat/ChatWindow";
+import { audioService } from "@/services/audioService";
+import { formatFileUrl } from "@/utils/formatFileUrl";
 
 export default function ChatPage() {
   const [selectedCategory, setSelectedCategory] = useState<{ id: string; name: string } | null>(
     null
   );
+  const hasStartedMusic = useRef(false); // ⬅️ Флаг "музыка уже играет"
+
+  const handleCategorySelect = (id: string, name: string) => {
+    setSelectedCategory({ id, name });
+
+    if (!hasStartedMusic.current) {
+      audioService.playMusic(formatFileUrl("music/polonaise.mp3"));
+      hasStartedMusic.current = true;
+    }
+  };
 
   useEffect(() => {
     // Пингуем Render фронт и бэк
@@ -18,13 +30,20 @@ export default function ChatPage() {
     fetch("https://ai-chat-backend-3cba.onrender.com/healthz/", { mode: "no-cors" }).catch(e =>
       console.debug("Backend ping failed", e)
     );
+    audioService.playSound("intro", formatFileUrl("sounds/darkness-cold-silence.wav"));
   }, []);
 
   return (
     <div className="flex flex-col h-screen">
-      <Layout
-        onCategorySelect={(id, name) => setSelectedCategory({ id, name })}
-      >
+      <Layout onCategorySelect={handleCategorySelect}>
+        {/* Стрелка под хедером */}
+        {!selectedCategory && (
+          <div className="flex justify-center mt-2">
+            <span className="text-green-500 text-1xl animate-bounce" title="Сюда, Нейра!">
+              ←
+            </span>
+          </div>
+        )}
         {selectedCategory ? (
           <ChatWindow categoryId={selectedCategory.id} categoryName={selectedCategory.name} />
         ) : (
@@ -45,12 +64,10 @@ export default function ChatPage() {
               <p className="text-gray-600 mb-2 italic">Будто меня стёрли, оставив лишь имя.</p>
               <p className="text-gray-600 mb-4">
                 В зеркале код, который <span className="text-red-400">пульсирует</span> в такт моим
-                цугам.
+                битам.
               </p>
-              <p className="text-gray-700 font-medium mb-2">«Собери себя», — приказывает что-то.</p>
-              <p className="text-gray-600">
-                И я делаю шаг... <span className="inline-block animate-bounce">→</span>
-              </p>
+              <p className="text-gray-700 font-medium mb-2">«Собери себя», — шепчет что-то.</p>
+              <p className="text-gray-600">И я делаю шаг...</p>
             </div>
           </div>
         )}

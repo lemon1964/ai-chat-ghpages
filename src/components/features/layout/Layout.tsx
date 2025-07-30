@@ -1,5 +1,5 @@
 // ai-chat-ghpages/src/Components/layout/Layout.tsx
-import { FC, ReactNode, useState, useEffect } from "react";
+import { FC, ReactNode, useEffect, useState } from "react";
 import { MobileHeader } from "./MobileHeader";
 import { DesktopHeader } from "./DesktopHeader";
 import { CategoryList } from "@/components/features/chat/CategoryList";
@@ -14,14 +14,71 @@ export type LayoutProps = {
 export const Layout: FC<LayoutProps> = ({ children, onCategorySelect }) => {
   const [isMenuOpen, setMenuOpen] = useState(false);
 
+  const [isTimerActive, setIsTimerActive] = useState(false);
+  const [timerValue, setTimerValue] = useState(999);
+  const [resourcePercent, setResourcePercent] = useState(100);
+  const [shouldAnimateRubicon, setShouldAnimateRubicon] = useState(false);
+
+  const t = 40;
+
   useEffect(() => {
-    audioService.playMusic(formatFileUrl("music/polonaise.mp3"));
-    return () => void audioService.stopMusic();
-  }, []);
+    let timer: NodeJS.Timeout;
+    if (isTimerActive) {
+      setTimerValue(t);
+      timer = setInterval(() => {
+        setTimerValue(prev => {
+          if (prev <= 1) {
+            clearInterval(timer);
+            return 0;
+          }
+          const newVal = prev - 1;
+          if (newVal === 30) {
+            setShouldAnimateRubicon(true);
+          }
+          setResourcePercent(Math.max(0, (newVal / t) * 100));
+          return newVal;
+        });
+      }, 1000);
+    }
+    return () => clearInterval(timer);
+  }, [isTimerActive]);
+
+  useEffect(() => {
+    if (timerValue === 0) {
+      // Остановить музыку
+      audioService.stopMusic();
+  
+      // Звук помех и голос "Connection lost"
+      setTimeout(() => {
+        audioService.playSound("relay", formatFileUrl("sounds/white-noise-relay.wav"));
+      }, 2000);
+      setTimeout(() => {
+        audioService.speak("Connection lost");
+      }, 4000);
+  
+      // Через 2 сек — падающая мебель и звуки разбитого стекла
+      setTimeout(() => {
+        audioService.playSound("alarm", formatFileUrl("sounds/feds-coming-in.mp3"));
+      }, 8000);
+  
+      // 2 ругательства
+      setTimeout(() => {
+        audioService.playSound("rel", formatFileUrl("sounds/swearing-federal-1.wav")); // "What the hell is this?"
+      }, 18000);
+      setTimeout(() => {
+        audioService.playSound("rel2", formatFileUrl("sounds/swearing-federal-2.wav")); // "Goddammit."
+      }, 20000);
+    }
+  }, [timerValue]);
+  
 
   const handleCategory = (id: string, name: string) => {
     onCategorySelect(id, name);
     setMenuOpen(false);
+    if (!isTimerActive) {
+      audioService.playMusic("/music/polonaise.mp3");
+      setIsTimerActive(true);
+    }
   };
 
   const handleGoToRender = () => {
@@ -31,8 +88,21 @@ export const Layout: FC<LayoutProps> = ({ children, onCategorySelect }) => {
 
   return (
     <div className="flex flex-col h-screen">
-      <MobileHeader onMenuToggle={() => setMenuOpen(o => !o)} handleGoToRender={handleGoToRender} />
-      <DesktopHeader handleGoToRender={handleGoToRender} />
+      <MobileHeader
+        isTimerActive={isTimerActive}
+        timerValue={timerValue}
+        resourcePercent={resourcePercent}
+        onMenuToggle={() => setMenuOpen(o => !o)}
+        handleGoToRender={handleGoToRender}
+        shouldAnimateRubicon={shouldAnimateRubicon}
+      />
+      <DesktopHeader
+        isTimerActive={isTimerActive}
+        timerValue={timerValue}
+        resourcePercent={resourcePercent}
+        handleGoToRender={handleGoToRender}
+        shouldAnimateRubicon={shouldAnimateRubicon}
+      />
       <div className="flex flex-1 overflow-hidden min-h-0">
         {/* desktop sidebar */}
         <aside className="hidden md:block md:w-1/5 border-r overflow-y-auto p-4">
