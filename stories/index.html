@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <title>Neira Story — Каталог Web Stories</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Каталог Web Stories по истории Нейры: Пролог, Призрачное Колесо, Пресса." />
+  <link rel="canonical" href="https://lemon1964.github.io/ai-chat-ghpages/stories/index.html" />
+
+  <!-- OG (легко и достаточно) -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Neira Story — Каталог Web Stories" />
+  <meta property="og:description" content="Выберите сторис: Пролог, Призрачное Колесо, Пресса." />
+  <meta property="og:image" content="https://lemon1964.github.io/ai-chat-ghpages/stories/assets/neira.png" />
+
+  <style>
+    :root { color-scheme: dark; }
+    body {
+      margin: 0; padding: 24px;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, "Helvetica Neue", Arial, "Apple Color Emoji", "Segoe UI Emoji";
+      background: #0b0b0b; color: #eaeaea;
+    }
+    header { max-width: 960px; margin: 0 auto 24px; }
+    h1 { margin: 0 0 8px; font-size: 28px; }
+    p.lead { margin: 0; opacity: .8; }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 18px;
+      max-width: 960px; margin: 24px auto;
+    }
+    .card {
+      display: block;
+      background: #141414;
+      border: 1px solid #222;
+      border-radius: 16px;
+      overflow: hidden;
+      text-decoration: none;
+      color: inherit;
+      transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+    }
+    .card:hover { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(0,0,0,.35); border-color: #2c2c2c; }
+    .thumb {
+      aspect-ratio: 3 / 5; /* близко к 1080x1920 */
+      width: 100%; object-fit: cover; display: block;
+      background: #222;
+    }
+    .content { padding: 12px 14px 14px; }
+    .title { font-weight: 700; font-size: 16px; margin: 0 0 6px; }
+    .desc { margin: 0; font-size: 13px; opacity: .8; }
+    footer { max-width: 960px; margin: 24px auto 0; opacity: .7; font-size: 13px; }
+    .home-link { color: #9ed0ff; text-decoration: none; }
+    .home-link:hover { text-decoration: underline; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Neira Story — Web Stories</h1>
+    <p class="lead">Короткие тизеры глав. Для чтения истории переходите на главный сайт.</p>
+  </header>
+
+  <main class="grid">
+    <!-- Пролог -->
+    <a class="card" href="./neira-prologue.html">
+      <img class="thumb" src="./assets/neira.png" alt="Neira Story — Пролог" loading="lazy" />
+      <div class="content">
+        <div class="title">Пролог</div>
+        <p class="desc">Атмосфера, музыка и счётчик Rubicon. Старт всей истории.</p>
+      </div>
+    </a>
+
+    <!-- Призрачное Колесо -->
+    <a class="card" href="./neira-wheel.html">
+      <img class="thumb" src="./assets/ghost-wheel.png" alt="Neira Story — Призрачное Колесо" loading="lazy" />
+      <div class="content">
+        <div class="title">Призрачное Колесо</div>
+        <p class="desc">Фракталы, мост и шёпот Хаоса. Следуй по порядку глав.</p>
+      </div>
+    </a>
+
+    <!-- Пресса -->
+    <a class="card" href="./neira-press.html">
+      <img class="thumb" src="./assets/print.png" alt="Neira Story — Пресса" loading="lazy" />
+      <div class="content">
+        <div class="title">Пресса</div>
+        <p class="desc">Огласка, заголовки, красные кольца. История клонится к Rubicon.</p>
+      </div>
+    </a>
+  </main>
+
+  <footer>
+    Читать историю: <a class="home-link" href="https://lemon1964.github.io/ai-chat-ghpages/">главный сайт</a>.
+  </footer>
+</body>
+</html>
