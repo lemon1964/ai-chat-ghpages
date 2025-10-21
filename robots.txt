@@ -2,3 +2,4 @@ User-agent: *
 Allow: /
 
 Sitemap: https://lemon1964.github.io/ai-chat-ghpages/sitemap.xml
+Sitemap: https://lemon1964.github.io/ai-chat-ghpages/sitemap.txt
